@@ -1,0 +1,42 @@
+@CHARSET "ISO-8859-1";
+/* ----------------------------------------*\
+	$COLORS
+\* ----------------------------------------*/
+/**
+ *	CONTENU............. Couleurs du projet
+*/
+
+:root{
+    --white: 				#fff;
+    --blueprimary: 		#00bcd4;
+    --bluedark: 			#0097a7;
+    --blueclear : 			#b2ebf2;
+    --orange: 				#ffc107;
+    --blackprimary: 		#212121;
+    --blacksecondary: 		#727272;
+    --bcgprimary: 			#727272;
+    --bcgclear: 			#e9e9e9;
+}
+
+.cl-white 				{   color: var(--white);				}
+.cl-blue-primary 		{	color: var(--blueprimary);			}
+.cl-blue-dark 			{	color: var(--bluedark);			}
+.cl-blue-clear 			{	color: var(--blueclear);			}
+.cl-orange				{	color: var(--orange);				}
+.cl-black-primary 		{	color: var(--blackprimary);		}
+.cl-black-secondary 	{	color: var(--blacksecondary);		}
+.cl-bcg-primary			{	color: var(--bcgprimary);			}
+.cl-bcg-clear			{	color: var(--bcgclear);			}
+.md-primary             {   color: var(--blueprimary);         }
+
+body{
+	color: var(--blackprimary);
+}
+
+p{
+    color: var(--blackprimary);
+ }
+
+aside {
+	background-color: #00bcd4;
+}

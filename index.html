@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>UxCards</title>
+
+  <meta name="author" content="Céline Caniot UxCard design / Marie Delavalette WebDesign / webDev " />
+  <meta name="description" content="L'essentiel de l'Ux Design" />
+  <meta name="keywords"  content="ux, design, cards" />
+
+  <!-- Favicon
+  <link rel="icon" sizes="32x32" href="img/icon/favicon-32.png" type="image/png">
+  <link rel="icon" sizes="64x64" href="img/icon/favicon-64.png" type="image/png">
+  <link rel="icon" sizes="96x96" href="img/icon/favicon-96.png" type="image/png">
+  <link rel="icon" sizes="196x196" href="img/icon/favicon-196.png" type="image/png">
+-->
+
+  <!-- FullPage style sheet-->
+  <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+
+  <!-- HoloConverter style sheet -->
+  <link rel="stylesheet" type="text/css" href="css/default.css" />
+  <link rel="stylesheet" type="text/css" href="css/flip.css" />
+  <link rel="stylesheet" type="text/css" href="css/3Deffect.css" />
+  <link rel="stylesheet" type="text/css" href="css/modal.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+
+  <!--[if IE]>
+    <script type="text/javascript">
+       var console = { log: function() {} };
+    </script>
+  <![endif]-->
+
+   <!-- Fullpage and scroll scripts -->
+  <script src="vendors/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="vendors/fullpage.js/vendors/scrolloverflow.min.js"></script>
+  <script type="text/javascript" src="js/jquery.fullPage.js"></script>
+  <script type="text/javascript" src="js/pageScrollController.js"></script>
+</head>
+
+<body  ng-app="app">
+<div id="main" ng-controller="mainController">
+  <div  class="section text-align-center" id="idpage--pioche" data-anchor="anchor--pioche" class="flex-container">
+      <h1>UX Cards</h1>
+<!-- Display droop card -->
+      <div ng-repeat="card in cards">
+        <div ng-if="card.id == idCardDisplay" >
+          <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+            <div class="flipper">
+              <div class="front ">
+                <img class="ItemCard__thumb" ng-src="{{card.pathrecto}}" alt="{{card.title}}"></img>
+              </div>
+              <div class="back ">
+                <img class="ItemCard__thumb" ng-src="{{card.pathverso}}" alt="{{card.title}}"></img>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="button" ng-click="piocher()" > Piocher </button>
+  </div>
+
+  <div  class="section text-align-center box-shadow" id="idpage--bibliotheque" data-anchor="anchor--bibliotheque" ng-controller="libraryController">
+  <h1 class="small-padding" >Bibliotheque</h1>
+<!-- Filter tabs -->
+    <div>
+      <ul ng-init="tab = 1" class="flex-container tab-menu">
+        <li class="flex-tab "  ng-class="{ active: isSet(1) }">
+          <a class="" ng-click="selectTab(1); groupFilter = {}">Toutes</a>
+        </li>
+        <li class="flex-tab"  ng-class="{ active: isSet(2) }">
+          <a class="" ng-click="selectTab(2); groupFilter ={group:'BOUTON'}">Bouton</a>
+        </li>
+        <li class="flex-tab"  ng-class="{ active: isSet(3) }">
+          <a class="" ng-click="selectTab(3); groupFilter ={group:'NAVIGATION'}">Navigation</a>
+        </li>
+      </ul>
+    </div>
+<!-- Display all cards -->
+    <div class="tab-content bibliotheque-flex-container" data-id="second" ng-click="selectedCard=card.path">
+        <div ng-repeat="card in cards | filter:groupFilter" class=" bibliotheque-flex-container column" ng-click="test">
+          <div class="ItemCard" ng-click="growCard($index)">
+    				<figure class="ItemCard__thumb openPaddingLink" >
+                <img src="{{card.pathrecto}}"  alt="" ></img>
+            </figure>
+            <div class="ItemCard__layer cover">
+                <div class="ItemCard__summary cover">
+                    <img class="ItemCard__title" ng-src="img/magnifier-tool.png" alt="zoom" ></img>
+                </div>
+            </div>
+  			 </div>
+       </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div id="contentModal" class="modal-content">
+         <img class="ItemCardGrow" id="lightbox-image-left"></img>
+         <img class="ItemCardGrow" id="lightbox-image-right"></img>
+      </div>
+    </div>
+  </div>
+<!-- Footer -->
+  <div  class="section text-align-center fp-auto-height fp-auto-height-responsive" id="idpage--footer" data-anchor="anchor--A propose" class="flex-container">
+    <div class="footer">
+      <h2>Design par <a href="http://www.celinecaniot.com">Céline CANIOT</a></h2>
+      <h2>Developpement par <a href="http://www.mariedelavalette.com">Marie Delavalette</a></h2>
+    </div>
+  </div>
+</div>
+<!-- Angular Dependencies -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular-animate.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular-aria.js"></script>
+
+<!-- HoloConverter Library -->
+<script type="text/javascript" src="app.js"></script>
+
+<!-- Controller View -->
+<script type="text/javascript" src="controller/mainController.js"></script>
+<script type="text/javascript" src="controller/libraryController.js"></script>
+
+
+</body>
+</html>
